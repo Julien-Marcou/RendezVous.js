@@ -1,0 +1,132 @@
+
+/* Global */
+
+body {
+	font: 16px/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #444;
+	background: #efefef;
+	padding: 2em;
+	margin: 0;
+	overflow-y: scroll;
+}
+
+#JSunit {
+	max-width: 800px;
+	padding: 1em  2.5em 2em;
+	background: #f9f9f9;
+	margin: 0 auto;
+}
+
+p {
+	margin: 0;
+}
+
+pre {
+	margin: 0;
+}
+
+.jsunit-suite-title, .jsunit-test-title {
+	cursor: pointer;
+}
+
+
+/* JSunit Stats */
+
+.jsunit-stats {
+	font-size: 0.9em;
+	text-align: right;
+	margin-bottom: 0.5em;
+}
+.jsunit-stats span {
+	color: #888;
+	margin-left: 0.75em;
+}
+.jsunit-stats span:last-child {
+	margin-left: 0.1em;
+}
+.jsunit-stats i {
+	font-style: italic;
+}
+
+
+/* JSunit Test Suites */
+
+.jsunit-suite:not(:first-child) {
+	margin-top: 1.4em;
+}
+.jsunit-suite:not(:last-child) {
+	margin-bottom: 1.4em;
+}
+.jsunit-suite .jsunit-suite:not(:first-child) {
+	margin-top: 0.8em;
+}
+.jsunit-suite .jsunit-suite:not(:last-child) {
+	margin-bottom: 0.8em;
+}
+.jsunit-suite > .jsunit-suite-title {
+	font-size: 1.8em;
+	margin: 0 0 0.4em;
+	color: #000;
+}
+.jsunit-suite .jsunit-suite > .jsunit-suite-title {
+	font-size: 1.4em;
+	color: #333;
+	margin: 0.5em 0 0.3em;
+}
+.jsunit-suite > .jsunit-suite-tests {
+	margin-left: 1.6em;
+}
+.jsunit-suite .jsunit-suite > .jsunit-suite-tests {
+	margin-left: 1.2em;
+}
+
+
+/* JSunit Tests */
+
+.jsunit-tests {
+	margin-left: 1em;
+}
+.jsunit-test:not(:last-child) {
+	margin-bottom: 0.2em;
+}
+.jsunit-test-passed::before {
+	content: '✓';
+	font-size: 0.9em;
+	display: block;
+	float: left;
+	width: 1.2em;
+	color: #00d6b2;
+	font-weight: bold;
+}
+.jsunit-test-failed::before {
+	content: '✖';
+	font-size: 0.9em;
+	display: block;
+	float: left;
+	width: 1.2em;
+	color: #c00;
+}
+.jsunit-test-assertions {
+	margin-left: 2.2em;
+	font-size: 0.8em;
+	display: none;
+}
+
+
+/* JSunit Assertions */
+
+.jsunit-assertion-passed {
+	color: #373;
+}
+.jsunit-assertion-failed {
+	color: #c00;
+}
+.jsunit-assertion pre {
+	font-size: 1em;
+}
+
+
+.jsunit-test-title {
+	font-size: 1em;
+	margin: 0;
+}

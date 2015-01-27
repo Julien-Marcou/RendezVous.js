@@ -1,0 +1,188 @@
+// Run "compass watch" in the root directory of your project to compile
+
+$rendezvous-prefix: 'rendezvous-';
+$rendezvous-default-width: 16rem;
+$rendezvous-default-font-size: 0.9rem;
+$rendezvous-default-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+.#{$rendezvous-prefix}container {
+	//position: relative;
+}
+
+.#{$rendezvous-prefix}input {
+	text-align: left;
+}
+
+.#{$rendezvous-prefix}popup {
+	display: none;
+	position: absolute;
+	z-index: 100;
+}
+
+.#{$rendezvous-prefix}datepicker {
+
+	width: $rendezvous-default-width;
+	font-size: $rendezvous-default-font-size;
+	cursor: default;
+	background-color: #fff;
+	box-shadow:
+
+		// v0
+		/*none*/
+
+		// v1
+		/*4px 4px 0 #fff,
+		4px 4px 0 1px rgba(0, 0, 0, 0.14),
+		8px 8px 0 #fff,
+		8px 8px 0 1px rgba(0, 0, 0, 0.1)*/
+
+		// v2
+		1px 6px 0 -3px #fff,
+		1px 6px 0 -2px rgba(0, 0, 0, 0.14),
+		2px 13px 0 -6px #fff,
+		2px 13px 0 -5px rgba(0, 0, 0, 0.1)
+
+		// v3
+		/*0 6px 0 -3px #fff,
+		0 6px 0 -2px rgba(0, 0, 0, 0.12)*/;
+
+	& * {
+		box-sizing: border-box;
+		background: none;
+		border: 0 none;
+		padding: 0;
+		margin: 0;
+		font-size: 1em;
+		line-height: 1.2em;
+		font-family: $rendezvous-default-font-family;
+		overflow: hidden;
+	}
+
+	& button::-moz-focus-inner, & input::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+
+}
+
+.#{$rendezvous-prefix}datepicker-navigation {
+
+	background-color: #df3232;
+
+	&-action {
+		height: 2.2em;
+		line-height: 2.2em;
+		display: block;
+		float: left;
+		text-align: center;
+		color: #fff;
+		&:hover {
+			background-color: #df5454;
+		}
+	}
+
+	&-previous, &-next {
+		width: 25%;
+	}
+
+	&-up {
+		width: 50%;
+	}
+
+}
+
+.#{$rendezvous-prefix}datepicker-calendar {
+
+	/* GENERAL CALENDAR */
+
+	border: 1px solid rgba(0, 0, 0, 0.18);
+	border-top: 0 none;
+
+	&-header {
+		margin-top: 0.35em;
+	}
+
+	&-body {
+		margin-top: 0.35em;
+		margin-bottom: 0.3em;
+	}
+
+	&-title {
+		display: block;
+		float: left;
+		padding: 0 0.28em;
+		color: #666;
+		border-bottom: 1px dotted #555;
+	}
+
+	&-value, &-dummy-value, &-selected-value {
+		display: block;
+		float: left;
+		padding: 0 0.28em;
+		color: #222;
+	}
+
+	&-value {
+		background-color: #f9f9f9;
+		&:hover {
+			color: #000;
+			background-color: #ececec;
+		}
+	}
+
+	&-selected-value {
+		background-color: #efefef;
+		&:hover {
+			color: #000;
+			background-color: #dfdfdf;
+		}
+	}
+
+
+	/* MONTH CALENDAR */
+
+	&-week-day, &-day {
+		width: (93% / 7);
+		margin: (7% / 7 / 2);
+	}
+
+	&-week-day {
+		height: 1.5em;
+		line-height: 1.5em;
+		text-align: center;
+	}
+
+	&-day {
+		height: 1.6em;
+		line-height: 1.6em;
+		text-align: right;
+	}
+
+
+	/* YEAR CALENDAR */
+
+	&-month {
+		width: (94% / 3);
+		margin: (6% / 3 / 2);
+		height: 1.8em;
+		line-height: 1.8em;
+		text-align: center;
+	}
+
+
+	/* DECADE CALENDAR */
+
+	&-year {
+		width: (96% / 2);
+		margin: (4% / 2 / 2);
+		height: 1.8em;
+		line-height: 1.8em;
+		text-align: center;
+	}
+
+}
+
+.#{$rendezvous-prefix}datepicker-clear {
+	clear: both;
+}
