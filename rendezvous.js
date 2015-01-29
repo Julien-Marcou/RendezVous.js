@@ -4,7 +4,6 @@
 
 	var $root = $(root);
 
-
 	function RendezVousNode(_$node, _settings, _callback) {
 
 		var self = this;
@@ -334,22 +333,22 @@
 		}
 
 		var i18nMonth = function(month) {
-			var monthKey = settings.internationalYearOrder[month]
+			var monthKey = settings.internationalYearOrder[month];
 			return settings.i18n.months.entire[monthKey];
 		}
 
 		var i18nMonthAbbreviation = function(month) {
-			var monthKey = settings.internationalYearOrder[month]
+			var monthKey = settings.internationalYearOrder[month];
 			return settings.i18n.months.abbreviation[monthKey];
 		}
 
 		var i18nDay = function(day) {
-			var dayKey = settings.internationalWeekOrder[day]
+			var dayKey = settings.internationalWeekOrder[day];
 			return settings.i18n.days.entire[dayKey];
 		}
 
 		var i18nDayAbbreviation = function(day) {
-			var dayKey = settings.internationalWeekOrder[day]
+			var dayKey = settings.internationalWeekOrder[day];
 			return settings.i18n.days.abbreviation[dayKey];
 		}
 
@@ -484,7 +483,7 @@
 				scaleValue = currentScale.title();
 			}
 			else if(typeof currentScale.title == 'string') {
-				scaleValue = buildString(currentScale.title, new Date(displayedDate.year, displayedDate. month, displayedDate.day));
+				scaleValue = buildString(currentScale.title, new Date(displayedDate.year, displayedDate. month, 1));
 			}
 
 			var currentCalendarI18n = settings.i18n.calendar[calendars.current];

@@ -4,8 +4,9 @@ RendezVous.js
 ### A jQuery Datepicker
 
 * Lightweight
-* Easy to use
-* Easy to customize
+* Flat design
+* User friendly
+* Developer friendly
 * Uses SCSS (full *em* based)
 * Keep calm and Pick a date !
 
@@ -112,8 +113,8 @@ Custom settings
 	 * %Month : Textual capitalized month (e.g January)
 	 *
 	 * YEARS
-	 * %y     : Numeric year, 2 digits (e.g 15)
-	 * %Y     : Numeric year, 4 digits (e.g 2015)
+	 * %y : Numeric year, 2 digits (e.g 15)
+	 * %Y : Numeric year, 4 digits (e.g 2015)
 	 */
 ```
 
