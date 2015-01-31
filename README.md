@@ -115,6 +115,12 @@ Custom settings
 	 * YEARS
 	 * %y : Numeric year, 2 digits (e.g 15)
 	 * %Y : Numeric year, 4 digits (e.g 2015)
+	 *
+	 * DECADES
+	 * %x0 : Numeric decade start, 2 digits (e.g 10)
+	 * %X0 : Numeric decade start, 4 digits (e.g 2010)
+	 * %x9 : Numeric decade end, 2 digits (e.g 19)
+	 * %X9 : Numeric decade end, 4 digits (e.g 2019)
 	 */
 ```
 
@@ -163,6 +169,9 @@ $('#my-datepicker').RendezVous(function(rdv) {
 	// To get the year of the datepicker
 	rdv.getYear();
 
+	// To get the decade of the datepicker
+	rdv.getDecade();
+
 	// To set the date of the datepicker
 	// (combination of the 3 previous)
 	rdv.setDate(day, month, year);
@@ -187,6 +196,12 @@ $('#my-datepicker').RendezVous(function(rdv) {
 
 	// To set the date to the next year
 	rdv.nextYear();
+
+	// To set the date to the previous decade
+	rdv.previousDecade();
+
+	// To set the date to the next decade
+	rdv.nextDecade();
 
 	// To set the scale of the datepicker
 	rdv.setScale(scale); // month, year, decade

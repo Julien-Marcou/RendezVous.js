@@ -2,8 +2,6 @@
 
 (function(scope, root, $) {
 
-	var $root = $(root);
-
 	function RendezVousNode(_$node, _settings, _callback) {
 
 		var self = this;
@@ -232,6 +230,8 @@
 
 		var currentDate = {};
 
+		// Todo : dans displayedDate : month, year, decade -> dans currentDate : day, month, year
+
 		var calendars = {
 			current:            'month',
 			order:              ['month', 'year', 'decade'],
@@ -255,7 +255,7 @@
 					isSelected: function(month) { return displayedDate.year == currentDate.year && month == currentDate.month; }
 				},
 				decade: {
-					title:      function() { /* %Y - %Y */ var currentDecade = decade(displayedDate.year); return buildString('%Y', new Date(currentDecade.start, 1, 1))+' - '+buildString('%Y', new Date(currentDecade.end, 1, 1)); },
+					title:      '%X0 - %X9',
 					values:     'year',
 					min:        function() { return decade(displayedDate.year).start; },
 					max:        function() { return decade(displayedDate.year).end; },
@@ -309,6 +309,22 @@
 			},
 			Y: function(date) {
 				return date.getFullYear();
+			},
+			x0: function(date) {
+				var currentDecadeStart = decade(date.getFullYear()).start;
+				return buildString('%y', new Date(currentDecadeStart, 1, 1));
+			},
+			X0: function(date) {
+				var currentDecadeStart = decade(date.getFullYear()).start;
+				return buildString('%Y', new Date(currentDecadeStart, 1, 1));
+			},
+			x9: function(date) {
+				var currentDecadeEnd = decade(date.getFullYear()).end;
+				return buildString('%y', new Date(currentDecadeEnd, 1, 1));
+			},
+			X9: function(date) {
+				var currentDecadeEnd = decade(date.getFullYear()).end;
+				return buildString('%Y', new Date(currentDecadeEnd, 1, 1));
 			}
 		};
 
@@ -483,7 +499,7 @@
 				scaleValue = currentScale.title();
 			}
 			else if(typeof currentScale.title == 'string') {
-				scaleValue = buildString(currentScale.title, new Date(displayedDate.year, displayedDate. month, 1));
+				scaleValue = buildString(currentScale.title, new Date(displayedDate.year, displayedDate.month, displayedDate.day));
 			}
 
 			var currentCalendarI18n = settings.i18n.calendar[calendars.current];
@@ -575,7 +591,7 @@
 		}
 
 		var setDay = function(day) {
-			var lastDay = lastDayOfTheMonth(displayedDate.month, displayedDate.year);
+			var lastDay = lastDayOfTheMonth(displayedDate.month, displayedDate.year).getDate();
 			if(day < 1) {
 				day = 1
 			}
@@ -583,6 +599,10 @@
 				day = lastDay;
 			}
 			displayedDate.day = day;
+		}
+
+		var checkDayBounds = function() {
+			setDay(displayedDate.day);
 		}
 
 		var previousDay = function() {
@@ -609,6 +629,7 @@
 				month = 11;
 			}
 			displayedDate.month = month;
+			checkDayBounds();
 		}
 
 		var previousMonth = function() {
@@ -617,6 +638,7 @@
 				previousYear();
 				displayedDate.month = 11;
 			}
+			checkDayBounds();
 		}
 
 		var nextMonth = function() {
@@ -625,26 +647,32 @@
 				nextYear();
 				displayedDate.month = 0;
 			}
+			checkDayBounds();
 		}
 
 		var setYear = function(year) {
 			displayedDate.year = year;
+			checkDayBounds();
 		}
 
 		var previousYear = function() {
 			displayedDate.year--;
+			checkDayBounds();
 		}
 
 		var nextYear = function() {
 			displayedDate.year++;
+			checkDayBounds();
 		}
 
 		var previousDecade = function() {
 			displayedDate.year -= 10;
+			checkDayBounds();
 		}
 
 		var nextDecade = function() {
 			displayedDate.year += 10;
+			checkDayBounds();
 		}
 
 		var onPrevious = function(event) {
@@ -694,7 +722,7 @@
 					triggerEvent('close');
 				}
 			}
-				resetScale(calendars.order.indexOf(settings.defaultScale));
+			resetScale(calendars.order.indexOf(settings.defaultScale));
 		}
 
 		var resetScale = function(index) {
@@ -717,6 +745,10 @@
 			if(!settings.inputEmptyByDefault) {
 				updateInput();
 			}
+		}
+
+		var onRequestToFocus = function(event) {
+			$input.find('input').first().focus();
 		}
 
 		var onRequestToOpen = function(event) {
@@ -765,7 +797,7 @@
 			$node.trigger(prefixEvent(event), self);
 		}
 
-		var preventEvent = function(event) {
+		var preventDefault = function(event) {
 			event.preventDefault();
 		}
 
@@ -781,8 +813,9 @@
 			$calendar = $node.find('.'+prefixClass('datepicker-calendar'));
 
 			$input.on('click focus', 'input', onRequestToOpen);
-			$input.on('blur', 'input', onRequestToClose); // Todo: replace "blur" event by ""click elsewhere"" event
-			$datepicker.on('mousedown', preventEvent);
+			$input.on('blur', 'input', onRequestToClose);
+			$datepicker.on('mousedown', preventDefault);
+
 			$datepicker.on('click', '.'+prefixClass('datepicker-navigation-previous'), onPrevious);
 			$datepicker.on('click', '.'+prefixClass('datepicker-navigation-next'), onNext);
 			$datepicker.on('click', '.'+prefixClass('datepicker-navigation-up'), onScaleUp);
@@ -889,6 +922,22 @@
 			updateDatepicker();
 		}
 
+		self.getDecade = function() {
+			return decade(currentDate.year);
+		}
+
+		self.previousDecade = function() {
+			previousDecade();
+			updateInput();
+			updateDatepicker();
+		}
+
+		self.nextDecade = function() {
+			nextDecade();
+			updateInput();
+			updateDatepicker();
+		}
+
 		self.setDate = function(day, month, year) {
 			setYear(year);
 			// Decreases the month by 1
@@ -915,7 +964,7 @@
 		}
 
 		self.open = function() {
-			onRequestToOpen(null);
+			onRequestToFocus(null);
 		}
 
 		self.close = function() {
@@ -951,7 +1000,7 @@
 		}
 
 		self.autoBuild = function() {
-			$root.find('['+settings.htmlAttribute+']').each(function() {
+			$(root).find('['+settings.htmlAttribute+']').each(function() {
 				build($(this), {});
 			});
 		}
