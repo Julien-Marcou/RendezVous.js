@@ -66,6 +66,9 @@ $(document).ready(function() {
 				Assert.isFunction(rdv.previousYear);
 				Assert.isFunction(rdv.nextYear);
 				Assert.isFunction(rdv.getYear);
+				Assert.isFunction(rdv.previousDecade);
+				Assert.isFunction(rdv.nextDecade);
+				Assert.isFunction(rdv.getDecade);
 				Assert.isFunction(rdv.setDate);
 				Assert.isFunction(rdv.getDate);
 				Assert.isFunction(rdv.setScale);
@@ -119,6 +122,7 @@ $(document).ready(function() {
 				Assert.equals('fri 01 jan 16',           rdv.format('%da %D %mo %y',     new Date(2016, 0, 1)));
 				Assert.equals('01/02/2015',              rdv.format('%D/%M/%Y',          new Date(2015, 1, 1)));
 				Assert.equals('16-2-1',                  rdv.format('%y-%m-%d',          new Date(2016, 1, 1)));
+				Assert.equals('2010 - 2019',             rdv.format('%X0 - %X9',         new Date(2016, 1, 1)));
 			});
 		});
 

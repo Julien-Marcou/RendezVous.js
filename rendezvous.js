@@ -230,8 +230,6 @@
 
 		var currentDate = {};
 
-		// Todo : dans displayedDate : month, year, decade -> dans currentDate : day, month, year
-
 		var calendars = {
 			current:            'month',
 			order:              ['month', 'year', 'decade'],
