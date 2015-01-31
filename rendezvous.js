@@ -188,6 +188,7 @@
 
 		var settings = {
 			canClose:               true,
+			openByDefault:          false,
 			splitInput:             false,
 			inputReadOnly:          true,
 			inputEmptyByDefault:    true,
@@ -742,6 +743,9 @@
 			updateDatepicker();
 			if(!settings.inputEmptyByDefault) {
 				updateInput();
+			}
+			if(settings.openByDefault) {
+				openDatepicker();
 			}
 		}
 

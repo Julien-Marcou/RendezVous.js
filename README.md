@@ -53,8 +53,8 @@ Custom settings
 ```
 
 ```javascript
-	// If true, the date input will be split in day, month and year inputs
-	splitInput: false
+	// If true, the datepicker is open by default
+	openByDefault: false
 ```
 
 ```javascript

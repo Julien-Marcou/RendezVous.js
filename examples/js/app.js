@@ -125,8 +125,6 @@ $('#rendez-vous-events')
 /* Always open Datepicker */
 $('#rendez-vous-open').RendezVous({
 		canClose: false,
-	},
-	function(rdv) {
-		rdv.open();
+		openByDefault: true
 	}
 );
